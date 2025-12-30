@@ -1,0 +1,40 @@
+email:
+  address:
+    destiny: #add_your_destiny@email.com
+
+spring:
+  application:
+    name: greetings
+
+  threads:
+    virtual:
+      enabled: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: #add_your_origin@gmail.com
+    password: #"dhad fghe octg auea"
+    protocol: smtp
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.timeout: 5000
+      mail.smtp.ssl.trust: "*"
+      mail.smtp.writetimeout: 5000
+      mail.smtp.starttls.enable: true
+      mail.smtp.starttls.required: true
+      mail.smtp.connectiontimeout: 5000
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: greetings-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.aruw.greetings.model"
